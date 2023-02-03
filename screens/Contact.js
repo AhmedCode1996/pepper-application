@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 
-const Contact = () => {
+const Contact = ({navigation}) => {
   const [name, setName] = useState('الاسم');
   const [email, setEmail] = useState('إيميلك الإلكترونى');
   const [message, setMessage] = useState('الرسالة');
@@ -58,7 +58,7 @@ const Contact = () => {
         />
         <View style={styles.copyrights}>
           <View style={[styles.shadow, { marginRight: 10 }]}>
-            <Pressable>
+            <Pressable onPress={() => navigation.navigate('Copyrights')}>
               <Image
                 source={require('./../assets/Copyright-button.png')}
                 style={styles.copyrightIcon}

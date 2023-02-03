@@ -29,20 +29,24 @@ const Scan = ({ navigation }) => {
         </Pressable>
         <View style={styles.information}>
           <View style={styles.teamInformation}>
-            <Text style={styles.informationText}>تواصل معنا </Text>
-            <Image
-              resizeMode="contain"
-              style={styles.teamIcon}
-              source={require('./../assets/contact-us.png')}
-            />
+            <Pressable onPress={() => navigation.navigate('Contact')}>
+              <Text style={styles.informationText}>تواصل معنا </Text>
+              <Image
+                resizeMode="contain"
+                style={styles.teamIcon}
+                source={require('./../assets/contact-us.png')}
+              />
+            </Pressable>
           </View>
           <View style={styles.articleInformation}>
-            <Text style={styles.informationText}> توعية</Text>
-            <Image
-              resizeMode="contain"
-              style={styles.articleIcon}
-              source={require('./../assets/care.png')}
-            />
+            <Pressable onPress={() => navigation.navigate('Problems')}>
+              <Text style={styles.informationText}> توعية</Text>
+              <Image
+                resizeMode="contain"
+                style={styles.articleIcon}
+                source={require('./../assets/care.png')}
+              />
+            </Pressable>
           </View>
         </View>
         <View style={styles.backgroundLogo}>
