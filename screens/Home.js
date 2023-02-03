@@ -33,14 +33,24 @@ const Home = ({ navigation }) => {
             style={[styles.buttonElement, { backgroundColor: 'black' }]}
             onPress={() => navigation.navigate('Scan')}
           >
+            <Image
+              resizeMode="contain"
+              style={styles.arabicArrow}
+              source={require('../assets/right-arrow.png')}
+            />
             <Text style={styles.buttonText}>أكمل بالعربية </Text>
           </Pressable>
-          {/* <Pressable
+          <Pressable
             style={[styles.buttonElement, { backgroundColor: '#243F88' }]}
             onPress={() => navigation.navigate('Scan')}
           >
             <Text style={styles.buttonText}> Continue in English </Text>
-          </Pressable> */}
+            <Image
+              resizeMode="contain"
+              style={styles.englishArrow}
+              source={require('../assets/right-arrow.png')}
+            />
+          </Pressable>
         </View>
       </ImageBackground>
     </View>
@@ -70,13 +80,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
     position: 'relative',
     zIndex: 5,
   },
   centerImage: {
-    marginTop: 50,
+    marginTop: 45,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -86,13 +96,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5EED7',
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
-    marginTop: -20,
+    marginTop: -30,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
   buttonElement: {
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
     paddingVertical: 12,
     elevation: 3,
     backgroundColor: 'black',
@@ -105,5 +116,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
+  },
+  arabicArrow: {
+    width: 15,
+    height: 15,
+  },
+  englishArrow: {
+    width: 15,
+    height: 15,
+    transform: [{ rotate: '180deg' }],
   },
 });
