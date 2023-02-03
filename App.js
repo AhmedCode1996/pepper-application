@@ -6,6 +6,11 @@ import FarmScan from './screens/FarmScan';
 import ScanResult from './screens/ScanResult';
 import Contact from './screens/Contact';
 import Copyrights from './screens/Copyrights';
+import Problems from './screens/Problems';
+import Behave from './screens/Behave';
+import Reasons from './screens/Reasons';
+import Method from './screens/Method';
+import NextMethod from './screens/NextMethod';
 // import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
@@ -13,16 +18,18 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Copyrights"
-        screenOptions={{ headerShown: false }}
-      >
-        {/* <Stack.Screen name="Home" component={Home} />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="FarmScan" component={FarmScan} />
         <Stack.Screen name="ScanResult" component={ScanResult} />
-        <Stack.Screen name="Scan" component={Scan} /> */}
-        {/* <Stack.Screen name="Contact" component={Contact} /> */}
+        <Stack.Screen name="Scan" component={Scan} />
+        <Stack.Screen name="Contact" component={Contact} />
         <Stack.Screen name="Copyrights" component={Copyrights} />
+        <Stack.Screen name="Problems" component={Problems} />
+        <Stack.Screen name="Behave" component={Behave} />
+        <Stack.Screen name="Reasons" component={Reasons} />
+        <Stack.Screen name="Method" component={Method} />
+        <Stack.Screen name="NextMethod" component={NextMethod} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 8,
     marginTop: 180,
-    marginBottom: 35,
+    marginBottom: 5,
   },
 
   introText: {
@@ -78,11 +78,12 @@ const styles = StyleSheet.create({
   },
   list: {
     fontWeight: 'bold',
-    height: '35%',
+    height: '45%',
     borderColor: '#243F88',
     borderRadius: 10,
     borderWidth: 2,
-    marginVertical: 10,
+    marginVertical: 5,
+    marginTop: 10,
   },
   item: {
     borderBottomColor: '#243F88',
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
   copyrightText: {
     fontWeight: 'bold',
     fontSize: 12,
-    marginBottom: 20,
+    marginBottom: 5,
+    marginTop: 10,
   },
 });

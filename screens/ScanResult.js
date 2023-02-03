@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 15,
     padding: 25,
+    shadowColor: '#000',
+    elevation: 3,
+
   },
   imageScan: {
     width: 250,
@@ -44,13 +47,13 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   textScan: {
-    fontSize: 20,
+    fontSize: 17,
     color: 'black',
     fontWeight: 'bold',
     margin: 15,
   },
   result: {
-    fontSize: 20,
+    fontSize: 18,
     color: 'white',
     fontWeight: 'bold',
     backgroundColor: '#243F88',

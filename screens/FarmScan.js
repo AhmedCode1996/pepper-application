@@ -38,9 +38,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   textElement: {
-    fontSize: 50,
+    fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 5,
   },
   scanContent: {
     justifyContent: 'center',
@@ -51,8 +50,9 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 15,
     height: 250,
-    marginTop: 20,
-    borderWidth: 1,
+    marginTop: 5,
+    shadowColor: '#000',
+    elevation: 2,
   },
   cameraScan: {
     justifyContent: 'center',

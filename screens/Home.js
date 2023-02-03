@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
   logo: {
     width: 80,
     height: 80,
-    margin: 20,
+    left: 15,
   },
   text: {
-    fontSize: 12,
+    fontSize: 10,
     textAlign: 'center',
   },
   image: {
