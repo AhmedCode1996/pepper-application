@@ -14,7 +14,7 @@ const Scan = ({ navigation }) => {
     >
       <Image
         style={styles.farmerImage}
-        source={require('./../assets/farmer.png')}
+        source={require('./../assets/defaultFarmer.png')}
       />
       <View style={styles.scanContent}>
         <Pressable
@@ -29,19 +29,19 @@ const Scan = ({ navigation }) => {
         </Pressable>
         <View style={styles.information}>
           <View style={styles.teamInformation}>
-            <Text style={styles.informationText}>أعضاء الفريق</Text>
+            <Text style={styles.informationText}>تواصل معنا </Text>
             <Image
               resizeMode="contain"
               style={styles.teamIcon}
-              source={require('./../assets/Team.png')}
+              source={require('./../assets/contact-us.png')}
             />
           </View>
           <View style={styles.articleInformation}>
-            <Text style={styles.informationText}>المقالات</Text>
+            <Text style={styles.informationText}> توعية</Text>
             <Image
               resizeMode="contain"
               style={styles.articleIcon}
-              source={require('./../assets/Articles.png')}
+              source={require('./../assets/care.png')}
             />
           </View>
         </View>
@@ -67,9 +67,10 @@ const styles = StyleSheet.create({
   },
   farmerImage: {
     width: '75%',
-    height: '40%',
+    height: '45%',
     position: 'relative',
     zIndex: 5,
+    top: 15,
   },
   scanContent: {
     flex: 1,
@@ -83,19 +84,19 @@ const styles = StyleSheet.create({
     marginTop: '-25%',
   },
   scan: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 10,
-    paddingHorizontal: 20,
+    borderRadius: 15,
+    paddingHorizontal: 15,
     paddingVertical: 10,
     marginTop: 20,
     width: 220,
   },
   cameraIcon: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
   },
   textScan: {
     fontSize: 16,
@@ -112,8 +113,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'black',
-    paddingVertical: 5,
-    borderRadius: 15,
+    paddingVertical: 10,
+    borderRadius: 20,
     justifyContent: 'center',
     marginRight: 8,
   },
@@ -122,9 +123,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#243F88',
-    // padding: 8,
     paddingVertical: 5,
-    borderRadius: 15,
+    borderRadius: 20,
   },
   informationText: {
     fontSize: 15,
@@ -133,17 +133,17 @@ const styles = StyleSheet.create({
   },
 
   teamIcon: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
   },
   articleIcon: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
   },
   backgroundLogo: {
     backgroundColor: 'white',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     paddingHorizontal: 10,
     position: 'absolute',
     bottom: 0,

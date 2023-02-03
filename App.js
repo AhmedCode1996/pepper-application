@@ -20,9 +20,9 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Scan" component={Scan} />
         <Stack.Screen name="FarmScan" component={FarmScan} />
         <Stack.Screen name="ScanResult" component={ScanResult} />
-        <Stack.Screen name="Scan" component={Scan} />
         <Stack.Screen name="Contact" component={Contact} />
         <Stack.Screen name="Copyrights" component={Copyrights} />
         <Stack.Screen name="Problems" component={Problems} />
