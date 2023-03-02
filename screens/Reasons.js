@@ -1,6 +1,17 @@
 import { ImageBackground, StyleSheet, Image, View, Text } from 'react-native';
-
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 const Reasons = () => {
+  const [fontsLoaded] = useFonts({
+    'Cairo-Bold': require('../assets/fonts/Cairo-Bold.ttf'),
+    'Cairo-Medium': require('../assets/fonts/Cairo-Medium.ttf'),
+    'Cairo-Regular': require('../assets/fonts/Cairo-Regular.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <ImageBackground
       style={styles.backgroundContainer}
@@ -94,6 +105,7 @@ const styles = StyleSheet.create({
     left: '20%',
   },
   subtitle: {
+    fontFamily: 'Cairo-Bold',
     marginBottom: 20,
     textAlign: 'center',
     lineHeight: 16,
@@ -118,9 +130,10 @@ const styles = StyleSheet.create({
     right: 0,
   },
   itemContent: {
-    fontWeight: 'bold',
     fontSize: 13,
     lineHeight: 16,
+    fontWeight: '400',
+    fontFamily: 'Cairo-Regular',
   },
   logo: {
     position: 'absolute',

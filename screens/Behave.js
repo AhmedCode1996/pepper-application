@@ -1,7 +1,41 @@
-import { ImageBackground, StyleSheet, Image, View, Text } from 'react-native';
-import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
+import { ImageBackground, StyleSheet, Image, View, Text, useWindowDimensions } from 'react-native';
+// import * as SplashScreen from 'expo-splash-screen';
+// import * as Font from 'expo-font';
+// import { useCallback, useEffect, useState } from 'react';
+// import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+// SplashScreen.preventAutoHideAsync();
 
 const Behave = () => {
+  
+  // const [appIsLoaded, setAppIsLoaded] = useState(false);
+
+  // useEffect(() => {
+  //   const prepare = async () => {
+  //     try {
+  //       await Font.loadAsync({
+  //         cairo: require('./../assets/fonts/Cairo-Black.ttf'),
+  //         black: require('./../assets/fonts/Cairo-ExtraBold.ttf'),
+  //         ubuntu: require('./../assets/fonts/ubuntu/Ubuntu-Italic.ttf'),
+  //       });
+  //     } catch (error) {
+  //       console.log(error);
+  //     } finally {
+  //       setAppIsLoaded(true);
+  //     }
+  //   };
+  //   prepare();
+  // }, []);
+
+  // const onLayout = useCallback(async () => {
+  //   if (appIsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [appIsLoaded]);
+
+  // if (!appIsLoaded) {
+  //   return null;
+  // }
   return (
     <ImageBackground
       style={styles.backgroundContainer}
@@ -82,6 +116,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 16,
     lineHeight: 18,
+    // fontFamily: 'cairo',
   },
   item: {
     marginBottom: 20,
@@ -89,6 +124,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 18,
+    // fontFamily: "cairo"
+    // fontFamily: 'black',
+    fontFamily: 'ubuntu'
   },
   logo: {
     position: 'absolute',

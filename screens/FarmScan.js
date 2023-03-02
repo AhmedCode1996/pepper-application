@@ -1,5 +1,33 @@
-import { View, Text, ImageBackground, Image, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  ImageBackground,
+  Image,
+  StyleSheet,
+} from 'react-native';
+import { launchCameraAsync } from 'expo-image-picker';
+import { useState, useEffect } from 'react';
+import { useGlobalContext } from '../data';
+
 const FarmScan = () => {
+  console.log(useGlobalContext());
+  const [image, setImage] = useState(null);
+  const takeImageHandler = async () => {
+    const takenImage = await launchCameraAsync({
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 0.5,
+    });
+
+    console.log(takenImage);
+
+    if (!takenImage.canceled) {
+      setImage(takenImage.assets[0].uri);
+    }
+  };
+
+ 
   return (
     <ImageBackground
       style={styles.container}
@@ -7,14 +35,14 @@ const FarmScan = () => {
     >
       <Text style={styles.textElement}>فحص المحصول</Text>
       <View style={styles.scanContent}>
-        <View style={styles.cameraScan}>
+        <Pressable onPress={takeImageHandler} style={styles.cameraScan}>
           <Image
             resizeMode="contain"
             style={styles.cameraIcon}
             source={require('./../assets/camera.png')}
           />
           <Text style={styles.whiteText}>إلتقاط صورة</Text>
-        </View>
+        </Pressable>
         <View style={styles.albumScan}>
           <Image
             resizeMode="contain"

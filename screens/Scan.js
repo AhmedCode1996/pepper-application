@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -5,13 +6,42 @@ import {
   View,
   Text,
   Pressable,
+  useWindowDimensions,
 } from 'react-native';
 const Scan = ({ navigation }) => {
+  const { width, height } = useWindowDimensions();
+  const [logWidth, setLogWidth] = useState(0);
+  const [logHeight, setLogHeight] = useState(0);
+  const [buttonWidth, setButtonWidth] = useState(0);
+  const [textSize, setTextSize] = useState(0);
+  const [cameraIcon, setCameraIcon] = useState(0)
+  const [backgroundLogo, setBackgroundLogo] = useState()
+
+  useEffect(() => {
+    setLogHeight(height);
+    setLogWidth(width);
+    if (height < 520) {
+      setButtonWidth(width / 10);
+      setCameraIcon(width / 9)
+      setTextSize(13);
+      setBackgroundLogo(height / 7);
+    } else {
+      setButtonWidth(45);
+    }
+  }, [width, height]);
+
+  const log = (
+    <View style={styles.log}>
+      <Text> width{logWidth}</Text>
+      <Text> height{logHeight}</Text>
+    </View>
+  );
   return (
     <ImageBackground
       style={styles.container}
       source={require('./../assets/background.png')}
     >
+      {log}
       <Image
         style={styles.farmerImage}
         source={require('./../assets/defaultFarmer.png')}
@@ -22,28 +52,37 @@ const Scan = ({ navigation }) => {
           onPress={() => navigation.navigate('FarmScan')}
         >
           <Image
-            style={styles.cameraIcon}
+            style={[styles.cameraIcon, { width: cameraIcon, height: cameraIcon }]}
             source={require('./../assets/Scan.png')}
           />
-          <Text style={styles.textScan}>فحص المحصول</Text>
+          <Text style={[styles.textScan, {fontSize: textSize}]}>فحص المحصول</Text>
         </Pressable>
         <View style={styles.information}>
           <View style={styles.teamInformation}>
-            <Pressable onPress={() => navigation.navigate('Contact')}>
-              <Text style={styles.informationText}>تواصل معنا </Text>
+            <Pressable
+              style={styles.alignItems}
+              onPress={() => navigation.navigate('Contact')}
+            >
+              <Text style={[styles.informationText,{fontSize: textSize}]}>تواصل معنا </Text>
               <Image
                 resizeMode="contain"
-                style={styles.teamIcon}
+                style={[
+                  styles.teamIcon,
+                  { width: buttonWidth, height: buttonWidth },
+                ]}
                 source={require('./../assets/contact-us.png')}
               />
             </Pressable>
           </View>
           <View style={styles.articleInformation}>
             <Pressable onPress={() => navigation.navigate('Problems')}>
-              <Text style={styles.informationText}> توعية</Text>
+              <Text style={[styles.informationText, {fontSize: textSize}]}> توعية</Text>
               <Image
                 resizeMode="contain"
-                style={styles.articleIcon}
+                style={[
+                  styles.articleIcon,
+                  { width: buttonWidth, height: buttonWidth },
+                ]}
                 source={require('./../assets/care.png')}
               />
             </Pressable>
@@ -52,7 +91,7 @@ const Scan = ({ navigation }) => {
         <View style={styles.backgroundLogo}>
           <Image
             resizeMode="contain"
-            style={styles.logo}
+            style={[styles.logo, {width: backgroundLogo, height: backgroundLogo}]}
             source={require('../assets/logo.png')}
           />
         </View>
@@ -135,6 +174,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+  alignItems: {
+    alignItems: 'center',
+  },
 
   teamIcon: {
     width: 45,
@@ -155,5 +197,9 @@ const styles = StyleSheet.create({
   logo: {
     width: 80,
     height: 80,
+  },
+  log: {
+    position: 'absolute',
+    left: 0,
   },
 });
