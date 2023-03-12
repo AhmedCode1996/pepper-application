@@ -13,7 +13,7 @@ import { useGlobalContext } from '../data';
 const FarmScan = ({ navigation }) => {
   const { formState } = useGlobalContext();
   const [image, setImage] = useState('');
-  const [result, setResult] = useState('');
+  const [output, setOutput] = useState('');
 
   const takeImageHandler = async () => {
     const takenImage = await launchCameraAsync({
@@ -45,7 +45,7 @@ const FarmScan = ({ navigation }) => {
       });
 
       const res = await data.json();
-      setResult(res.output);
+      setOutput(res.output);
       console.log(res);
     } catch (error) {
       console.log('error occured', error);
@@ -80,7 +80,7 @@ const FarmScan = ({ navigation }) => {
       });
 
       const res = await data.json();
-      setResult(res.output);
+      setOutput(res.output);
       console.log(res);
     } catch (error) {
       console.log('error occured', error);
@@ -88,12 +88,15 @@ const FarmScan = ({ navigation }) => {
   };
 
   useEffect(() => {
-    formState['url'] = image;
     formState['output'] = output;
-    if (image.length !== 0) {
-      navigation.navigate('ScanResult');
-    }
-  }, [image]);
+    formState['url'] = image;
+
+    setTimeout(() => {
+      if (image.length !== 0) {
+        navigation.navigate('ScanResult');
+      }
+    }, 3000);
+  }, [image, output]);
   return (
     <ImageBackground
       style={styles.container}
