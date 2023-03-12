@@ -27,8 +27,9 @@ const Home = ({ navigation }) => {
   useEffect(() => {
     setLogWidth(width);
     setLogHeight(height);
-    if (height < 570) {
-      setImageSize(150);
+    if (height < 600) {
+      setImageSize(180);
+      setImagePosition(30)
     }
     if (height < 450) {
       setImageSize(170);
@@ -53,7 +54,7 @@ const Home = ({ navigation }) => {
       setLogoPosition('-36%');
     } else {
       setLogoPosition(-100);
-      setImageSize(190);
+      setImageSize(180);
       setButtonView(0);
       setImagePosition(30);
     }

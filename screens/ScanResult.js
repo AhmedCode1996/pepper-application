@@ -15,9 +15,10 @@ const ScanResult = () => {
         />
         <Text style={styles.textScan}>نتيجة الفحص</Text>
         <Text style={styles.result}>
-          {formState.output === 1
-            ? 'ثمرة الفلفل مصابة'
-            : 'ثمرة الفلفل غير مصابة'}
+          {formState.output === 1 && 'ثمرة الفلفل غير مصابة'}
+        </Text>
+        <Text style={styles.result}>
+          {formState.output === 0 && 'ثمرة الفلفل مصابة'}
         </Text>
       </View>
     </ImageBackground>
