@@ -3,15 +3,16 @@ import { createContext, useState, useContext } from 'react';
 const ImageContext = createContext();
 
 const Context = ({ children }) => {
-  const [formData, setFormData] = useState({
+  const [formState, setformState] = useState({
     url: '',
-    status: ''
+    status: '',
+    output: 0
   });
   return (
     <ImageContext.Provider
       value={{
-        formData,
-        setFormData,
+        formState,
+        setformState,
       }}
     >
       {children}

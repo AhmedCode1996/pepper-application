@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
 import { Text, StyleSheet, Image, ImageBackground, View } from 'react-native';
 import { useGlobalContext } from '../data';
 const ScanResult = () => {
-  const { formData } = useGlobalContext();
-  const [result, setResult] = useState(0);
+  const { formState } = useGlobalContext();
   return (
     <ImageBackground
       style={styles.container}
@@ -12,12 +10,14 @@ const ScanResult = () => {
       <View style={styles.content}>
         <Image
           resizeMode="contain"
-          source={{ uri: formData['url'] }}
+          source={{ uri: formState['url'] }}
           style={styles.imageScan}
         />
         <Text style={styles.textScan}>نتيجة الفحص</Text>
         <Text style={styles.result}>
-          {result ? 'ثمرة الفلفل مصابة' : 'ثمرة الفلفل غير مصابة'}
+          {formState.output === 1
+            ? 'ثمرة الفلفل مصابة'
+            : 'ثمرة الفلفل غير مصابة'}
         </Text>
       </View>
     </ImageBackground>

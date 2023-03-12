@@ -11,16 +11,43 @@ import { useEffect, useState } from 'react';
 import { useGlobalContext } from '../data';
 
 const FarmScan = ({ navigation }) => {
-  const { formData } = useGlobalContext();
+  const { formState } = useGlobalContext();
   const [image, setImage] = useState('');
+
   const takeImageHandler = async () => {
     const takenImage = await launchCameraAsync({
       allowsEditing: false,
-      quality: 1,
+      quality: 0.5,
     });
 
     if (!takenImage.canceled) {
       setImage(takenImage.assets[0].uri);
+    }
+
+    if (takenImage.canceled) {
+      return;
+    }
+    const formData = new FormData();
+    formData.append('picture', {
+      uri: takenImage.assets[0].uri,
+      type: `${takenImage.assets[0].type}/jpeg`,
+      name: takenImage.assets[0].uri,
+    });
+
+    try {
+      const data = await fetch('https://pepperdiagnosis.herokuapp.com', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      const res = await data.json();
+      formState['output'] = res.output;
+      console.log(res);
+    } catch (error) {
+      console.log('error occured', error);
     }
   };
   const openGallary = async () => {
@@ -32,10 +59,35 @@ const FarmScan = ({ navigation }) => {
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
+    if (result.canceled) {
+      return;
+    }
+    const formData = new FormData();
+    formData.append('picture', {
+      uri: result.assets[0].uri,
+      type: `${result.assets[0].type}/jpeg`,
+      name: result.assets[0].uri,
+    });
+
+    try {
+      const data = await fetch('https://pepperdiagnosis.herokuapp.com', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      const res = await data.json();
+      formState['output'] = res.output;
+      console.log(res);
+    } catch (error) {
+      console.log('error occured', error);
+    }
   };
 
   useEffect(() => {
-    formData['url'] = image;
+    formState['url'] = image;
     if (image.length !== 0) {
       navigation.navigate('ScanResult');
     }
