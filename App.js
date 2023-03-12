@@ -11,6 +11,7 @@ import Behave from './screens/Behave';
 import Reasons from './screens/Reasons';
 import Method from './screens/Method';
 import NextMethod from './screens/NextMethod';
+import { Context } from './data';
 // import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
@@ -18,19 +19,21 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Scan" component={Scan} />
-        <Stack.Screen name="FarmScan" component={FarmScan} />
-        <Stack.Screen name="ScanResult" component={ScanResult} />
-        <Stack.Screen name="Contact" component={Contact} />
-        <Stack.Screen name="Copyrights" component={Copyrights} />
-        <Stack.Screen name="Problems" component={Problems} />
-        <Stack.Screen name="Behave" component={Behave} />
-        <Stack.Screen name="Reasons" component={Reasons} />
-        <Stack.Screen name="Method" component={Method} />
-        <Stack.Screen name="NextMethod" component={NextMethod} />
-      </Stack.Navigator>
+      <Context>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Scan" component={Scan} />
+          <Stack.Screen name="FarmScan" component={FarmScan} />
+          <Stack.Screen name="ScanResult" component={ScanResult} />
+          <Stack.Screen name="Contact" component={Contact} />
+          <Stack.Screen name="Copyrights" component={Copyrights} />
+          <Stack.Screen name="Problems" component={Problems} />
+          <Stack.Screen name="Behave" component={Behave} />
+          <Stack.Screen name="Reasons" component={Reasons} />
+          <Stack.Screen name="Method" component={Method} />
+          <Stack.Screen name="NextMethod" component={NextMethod} />
+        </Stack.Navigator>
+      </Context>
     </NavigationContainer>
   );
 };

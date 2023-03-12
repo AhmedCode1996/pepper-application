@@ -5,6 +5,7 @@ const ImageContext = createContext();
 const Context = ({ children }) => {
   const [formData, setFormData] = useState({
     url: '',
+    status: ''
   });
   return (
     <ImageContext.Provider

@@ -6,28 +6,40 @@ import {
   Image,
   StyleSheet,
 } from 'react-native';
-import { launchCameraAsync } from 'expo-image-picker';
-import { useState, useEffect } from 'react';
+import { launchCameraAsync, launchImageLibraryAsync } from 'expo-image-picker';
+import { useEffect, useState } from 'react';
 import { useGlobalContext } from '../data';
 
-const FarmScan = () => {
-  console.log(useGlobalContext());
-  const [image, setImage] = useState(null);
+const FarmScan = ({ navigation }) => {
+  const { formData } = useGlobalContext();
+  const [image, setImage] = useState('');
   const takeImageHandler = async () => {
     const takenImage = await launchCameraAsync({
-      allowsEditing: true,
-      aspect: [16, 9],
-      quality: 0.5,
+      allowsEditing: false,
+      quality: 1,
     });
-
-    console.log(takenImage);
 
     if (!takenImage.canceled) {
       setImage(takenImage.assets[0].uri);
     }
   };
+  const openGallary = async () => {
+    let result = await launchImageLibraryAsync({
+      allowsEditing: false,
+      quality: 1,
+    });
 
- 
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
+  useEffect(() => {
+    formData['url'] = image;
+    if (image.length !== 0) {
+      navigation.navigate('ScanResult');
+    }
+  }, [image]);
   return (
     <ImageBackground
       style={styles.container}
@@ -43,14 +55,14 @@ const FarmScan = () => {
           />
           <Text style={styles.whiteText}>إلتقاط صورة</Text>
         </Pressable>
-        <View style={styles.albumScan}>
+        <Pressable onPress={openGallary} style={styles.albumScan}>
           <Image
             resizeMode="contain"
             style={styles.gallaryIcon}
             source={require('./../assets/gallary.png')}
           />
           <Text style={styles.whiteText}>اختار من المعرض</Text>
-        </View>
+        </Pressable>
       </View>
     </ImageBackground>
   );

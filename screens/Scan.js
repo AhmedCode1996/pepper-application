@@ -27,6 +27,8 @@ const Scan = ({ navigation }) => {
       setBackgroundLogo(height / 7);
     } else {
       setButtonWidth(45);
+      setCameraIcon(width / 7)
+      setTextSize(15);
     }
   }, [width, height]);
 

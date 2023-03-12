@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Text, StyleSheet, Image, ImageBackground, View } from 'react-native';
+import { useGlobalContext } from '../data';
 const ScanResult = () => {
-  const [result, setResult] = useState(false);
+  const { formData } = useGlobalContext();
+  const [result, setResult] = useState(0);
   return (
     <ImageBackground
       style={styles.container}
       source={require('./../assets/background.png')}
     >
       <View style={styles.content}>
-        <Image style={styles.imageScan} />
+        <Image
+          resizeMode="contain"
+          source={{ uri: formData['url'] }}
+          style={styles.imageScan}
+        />
         <Text style={styles.textScan}>نتيجة الفحص</Text>
         <Text style={styles.result}>
           {result ? 'ثمرة الفلفل مصابة' : 'ثمرة الفلفل غير مصابة'}
@@ -37,7 +43,6 @@ const styles = StyleSheet.create({
     padding: 25,
     shadowColor: '#000',
     elevation: 3,
-
   },
   imageScan: {
     width: 250,

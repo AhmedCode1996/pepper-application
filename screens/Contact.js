@@ -8,11 +8,16 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import { sendData } from './utils/http';
 
-const Contact = ({navigation}) => {
+const Contact = ({ navigation }) => {
   const [name, setName] = useState('الاسم');
   const [email, setEmail] = useState('إيميلك الإلكترونى');
   const [message, setMessage] = useState('الرسالة');
+
+  const submitHandler = () => {
+    sendData({ name, email, message });
+  };
 
   return (
     <ImageBackground
@@ -45,7 +50,7 @@ const Contact = ({navigation}) => {
           multiline
           style={styles.textareaInput}
         />
-        <Pressable style={styles.sendButton}>
+        <Pressable onPress={submitHandler} style={styles.sendButton}>
           <Image
             style={styles.sendIcon}
             resizeMode="contain"
