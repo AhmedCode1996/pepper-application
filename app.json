@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AwesomeProject",
-    "slug": "AwesomeProject",
+    "name": "pepperDiagnosis",
+    "slug": "pepperDiagnosis",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,7 +28,7 @@
       "permissions": [
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.ahmedharb.AwesomeProject"
+      "package": "com.ahmedharb.pepperDiagnosis"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -43,7 +43,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "f93da353-3b7d-4dad-ae4d-4e9311160b63"
+        "projectId": "a8de0505-414e-4a2c-b88f-ef8ac9c679ca"
       }
     }
   }

@@ -32,12 +32,6 @@ const Scan = ({ navigation }) => {
     }
   }, [width, height]);
 
-  const log = (
-    <View style={styles.log}>
-      <Text> width{logWidth}</Text>
-      <Text> height{logHeight}</Text>
-    </View>
-  );
   return (
     <ImageBackground
       style={styles.container}
@@ -99,16 +93,6 @@ const Scan = ({ navigation }) => {
             </Pressable>
           </View>
         </View>
-        {/* <View style={styles.backgroundLogo}>
-          <Image
-            resizeMode="contain"
-            style={[
-              styles.logo,
-              { width: backgroundLogo, height: backgroundLogo },
-            ]}
-            source={require('../assets/logo.png')}
-          />
-        </View> */}
       </View>
       <Image
         style={styles.bottomLogo}
@@ -197,7 +181,6 @@ const styles = StyleSheet.create({
   alignItems: {
     alignItems: 'center',
   },
-
   teamIcon: {
     width: 45,
     height: 45,
@@ -213,10 +196,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     position: 'absolute',
     bottom: 0,
-  },
-  logo: {
-    width: 80,
-    height: 80,
   },
   bottomLogo: {
     position: 'absolute',

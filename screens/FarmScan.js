@@ -50,7 +50,6 @@ const FarmScan = ({ navigation }) => {
       const res = await data.json();
       setOutput(res.output);
       setLoading(true);
-      console.log(res);
     } catch (error) {
       console.log('error occured', error);
     }
@@ -86,7 +85,6 @@ const FarmScan = ({ navigation }) => {
 
       const res = await data.json();
       setOutput(res.output);
-      console.log(res);
     } catch (error) {
       console.log('error occured', error);
     }

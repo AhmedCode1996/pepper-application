@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     lineHeight: 16,
-    // textAlign: 'center',
   },
   homeButton: {
     backgroundColor: '#222221',

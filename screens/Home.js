@@ -11,29 +11,19 @@ import {
 const Home = ({ navigation }) => {
   const { width, height } = useWindowDimensions();
 
-  const [logWidth, setLogWidth] = useState(0);
-  const [logHeight, setLogHeight] = useState(0);
   const [imageSize, setImageSize] = useState(250);
   const [imageHeight, setimageHeight] = useState(100);
   const [logoPosition, setLogoPosition] = useState('-35%');
   const [imagePosition, setImagePosition] = useState(0);
   const [buttonView, setButtonView] = useState(0);
   const [textSize, setTextSize] = useState(10);
-  const log = (
-    <View style={styles.log}>
-      <Text> width{logWidth}</Text>
-      <Text> height{logHeight}</Text>
-    </View>
-  );
 
   useEffect(() => {
-    setLogWidth(width);
-    setLogHeight(height);
     if (height < 600) {
       setImageSize(180);
       setImagePosition(30);
     }
-    if (height < 753) {
+    if (height <= 760) {
       setImagePosition('30%');
       setButtonView('15%');
       setTextSize(13);
@@ -197,8 +187,5 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15,
     transform: [{ rotate: '180deg' }],
-  },
-  log: {
-    position: 'absolute',
   },
 });

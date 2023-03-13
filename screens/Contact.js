@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Image,
   ImageBackground,
@@ -7,7 +7,6 @@ import {
   Text,
   TextInput,
   View,
-  Linking,
 } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
 import Toast from 'react-native-root-toast';

@@ -1,10 +1,8 @@
-<script src="http://localhost:8097"></script>;
 import { useEffect, useState } from 'react';
 import {
   StyleSheet,
   ImageBackground,
   Image,
-  Text,
   View,
   Pressable,
   useWindowDimensions,
@@ -19,9 +17,6 @@ const Problems = ({ navigation }) => {
     }
   }, [width, height]);
 
-  const behaveButton = {
-    top: behave,
-  };
   return (
     <ImageBackground
       resizeMode="stretch"

@@ -1,16 +1,12 @@
-import { useEffect } from 'react';
 import {
   FlatList,
-  Image,
   ImageBackground,
   StyleSheet,
   Text,
   View,
-  useWindowDimensions
 } from 'react-native';
 
 const Copyrights = () => {
-  
   return (
     <ImageBackground
       style={styles.container}
@@ -68,7 +64,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 8,
-    marginTop: "58%",
+    marginTop: '58%',
     marginBottom: 5,
   },
 

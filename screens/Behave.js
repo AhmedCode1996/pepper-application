@@ -1,9 +1,6 @@
-import { ImageBackground, StyleSheet, Image, View, Text, useWindowDimensions } from 'react-native';
-
+import { ImageBackground, StyleSheet, Image, View, Text } from 'react-native';
 
 const Behave = () => {
-  
- 
   return (
     <ImageBackground
       style={styles.backgroundContainer}
@@ -84,7 +81,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 16,
     lineHeight: 18,
-    // fontFamily: 'cairo',
   },
   item: {
     marginBottom: 20,
@@ -92,9 +88,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 18,
-    // fontFamily: "cairo"
-    // fontFamily: 'black',
-    fontFamily: 'ubuntu'
+    fontFamily: 'ubuntu',
   },
   logo: {
     position: 'absolute',

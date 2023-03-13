@@ -14,8 +14,6 @@ import NextMethod from './screens/NextMethod';
 import { Context } from './data';
 import { RootSiblingParent } from 'react-native-root-siblings';
 
-// import { useFonts } from 'expo-font';
-
 const Stack = createNativeStackNavigator();
 
 const App = () => {
