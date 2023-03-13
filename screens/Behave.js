@@ -1,41 +1,9 @@
-import { useEffect } from 'react';
 import { ImageBackground, StyleSheet, Image, View, Text, useWindowDimensions } from 'react-native';
-// import * as SplashScreen from 'expo-splash-screen';
-// import * as Font from 'expo-font';
-// import { useCallback, useEffect, useState } from 'react';
-// import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-// SplashScreen.preventAutoHideAsync();
+
 
 const Behave = () => {
   
-  // const [appIsLoaded, setAppIsLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   const prepare = async () => {
-  //     try {
-  //       await Font.loadAsync({
-  //         cairo: require('./../assets/fonts/Cairo-Black.ttf'),
-  //         black: require('./../assets/fonts/Cairo-ExtraBold.ttf'),
-  //         ubuntu: require('./../assets/fonts/ubuntu/Ubuntu-Italic.ttf'),
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       setAppIsLoaded(true);
-  //     }
-  //   };
-  //   prepare();
-  // }, []);
-
-  // const onLayout = useCallback(async () => {
-  //   if (appIsLoaded) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // }, [appIsLoaded]);
-
-  // if (!appIsLoaded) {
-  //   return null;
-  // }
+ 
   return (
     <ImageBackground
       style={styles.backgroundContainer}
@@ -98,7 +66,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     top: -15,
-    left: '20%',
+    left: '25%',
   },
   content: {
     backgroundColor: '#F7F8FA',

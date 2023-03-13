@@ -7,7 +7,9 @@ import {
   Text,
   TextInput,
   View,
+  Linking,
 } from 'react-native';
+import * as MailComposer from 'expo-mail-composer';
 import Toast from 'react-native-root-toast';
 import { sendData } from './utils/http';
 
@@ -19,8 +21,17 @@ const Contact = ({ navigation }) => {
   const showToast = () => {
     Toast.show('Request sent successfully!', Toast.durations.SHORT);
   };
+
+  const sendMail = () => {
+    MailComposer.composeAsync({
+      subject: 'contact information',
+      body: message,
+      recipients: ['contact@hafedk.org'],
+    });
+  };
   const submitHandler = () => {
     sendData({ name, email, message });
+    sendMail();
     showToast();
     setName('');
     setEmail('');

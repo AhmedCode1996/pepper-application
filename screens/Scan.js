@@ -99,7 +99,7 @@ const Scan = ({ navigation }) => {
             </Pressable>
           </View>
         </View>
-        <View style={styles.backgroundLogo}>
+        {/* <View style={styles.backgroundLogo}>
           <Image
             resizeMode="contain"
             style={[
@@ -108,8 +108,13 @@ const Scan = ({ navigation }) => {
             ]}
             source={require('../assets/logo.png')}
           />
-        </View>
+        </View> */}
       </View>
+      <Image
+        style={styles.bottomLogo}
+        resizeMode={'stretch'}
+        source={require('../assets/belllogo.png')}
+      />
     </ImageBackground>
   );
 };
@@ -121,6 +126,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    position: 'relative',
   },
   farmerImage: {
     width: '75%',
@@ -212,8 +218,10 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
   },
-  log: {
+  bottomLogo: {
     position: 'absolute',
-    left: 0,
+    width: 100,
+    height: 80,
+    bottom: 0,
   },
 });

@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     top: -15,
-    left: '20%',
+    left: '25%',
   },
   subtitle: {
     fontFamily: 'Cairo-Bold',

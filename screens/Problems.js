@@ -14,7 +14,7 @@ const Problems = ({ navigation }) => {
   const { width, height } = useWindowDimensions();
 
   useEffect(() => {
-    if (height < 753 && width < 360) {
+    if (height < 753) {
       setBehave('-12%');
     }
   }, [width, height]);
@@ -41,7 +41,7 @@ const Problems = ({ navigation }) => {
       >
         <Image
           style={styles.behaveImage}
-          resizeMode="contain"
+          resizeMode="cover"
           source={require('./../assets/howbehave.png')}
         />
       </Pressable>
@@ -49,7 +49,7 @@ const Problems = ({ navigation }) => {
         <Pressable onPress={() => navigation.navigate('Method')}>
           <Image
             style={styles.methodsImage}
-            resizeMode="contain"
+            resizeMode="stretch"
             source={require('./../assets/methods.png')}
           />
         </Pressable>
@@ -58,7 +58,7 @@ const Problems = ({ navigation }) => {
         <Pressable onPress={() => navigation.navigate('Reasons')}>
           <Image
             style={styles.reasonsImage}
-            resizeMode="contain"
+            resizeMode="cover"
             source={require('./../assets/reasons.png')}
           />
         </Pressable>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   behaveButton: {
     position: 'absolute',
     top: '13%',
-    width: 160,
+    width: 150,
     height: 120,
   },
   behaveImage: {
@@ -98,9 +98,9 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   methodsButton: {
-    right: '-40%',
+    right: '-42%',
     top: '20%',
-    width: 150,
+    width: 160,
     height: 150,
   },
   methodsImage: {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   bellLogo: {
     bottom: 0,
     position: 'absolute',
-    right: 0,
+    right: '5%',
     width: 100,
     height: 80,
   },

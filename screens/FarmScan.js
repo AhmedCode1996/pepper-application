@@ -5,6 +5,7 @@ import {
   ImageBackground,
   Image,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native';
 import { launchCameraAsync, launchImageLibraryAsync } from 'expo-image-picker';
 import { useEffect, useState } from 'react';
@@ -14,6 +15,7 @@ const FarmScan = ({ navigation }) => {
   const { formState } = useGlobalContext();
   const [image, setImage] = useState('');
   const [output, setOutput] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const takeImageHandler = async () => {
     const takenImage = await launchCameraAsync({
@@ -23,6 +25,7 @@ const FarmScan = ({ navigation }) => {
 
     if (!takenImage.canceled) {
       setImage(takenImage.assets[0].uri);
+      setLoading(true);
     }
 
     if (takenImage.canceled) {
@@ -46,6 +49,7 @@ const FarmScan = ({ navigation }) => {
 
       const res = await data.json();
       setOutput(res.output);
+      setLoading(true);
       console.log(res);
     } catch (error) {
       console.log('error occured', error);
@@ -59,6 +63,7 @@ const FarmScan = ({ navigation }) => {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
+      setLoading(true);
     }
     if (result.canceled) {
       return;
@@ -90,13 +95,14 @@ const FarmScan = ({ navigation }) => {
   useEffect(() => {
     formState['output'] = output;
     formState['url'] = image;
-
     setTimeout(() => {
       if (image.length !== 0 && typeof formState['output'] !== null) {
         navigation.navigate('ScanResult');
+        setLoading(false);
       }
     }, 3000);
   }, [image, output]);
+
   return (
     <ImageBackground
       style={styles.container}
@@ -121,6 +127,7 @@ const FarmScan = ({ navigation }) => {
           <Text style={styles.whiteText}>اختار من المعرض</Text>
         </Pressable>
       </View>
+      {loading && <ActivityIndicator size={'large'} style={styles.spinner} />}
     </ImageBackground>
   );
 };
@@ -182,5 +189,8 @@ const styles = StyleSheet.create({
   whiteText: {
     color: 'white',
     fontWeight: 'bold',
+  },
+  spinner: {
+    marginTop: 20,
   },
 });

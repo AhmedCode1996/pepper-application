@@ -14,6 +14,7 @@ const Home = ({ navigation }) => {
   const [logWidth, setLogWidth] = useState(0);
   const [logHeight, setLogHeight] = useState(0);
   const [imageSize, setImageSize] = useState(250);
+  const [imageHeight, setimageHeight] = useState(100);
   const [logoPosition, setLogoPosition] = useState('-35%');
   const [imagePosition, setImagePosition] = useState(0);
   const [buttonView, setButtonView] = useState(0);
@@ -32,10 +33,12 @@ const Home = ({ navigation }) => {
       setImageSize(180);
       setImagePosition(30);
     }
-    if (height < 753 && width < 360) {
+    if (height < 753) {
       setImagePosition('30%');
       setButtonView('15%');
       setTextSize(13);
+      setImageSize(250);
+      setimageHeight(280);
     }
     if (height < 450) {
       setImageSize(170);
@@ -68,6 +71,7 @@ const Home = ({ navigation }) => {
 
   const centerImageStyle = {
     width: imageSize,
+    height: imageHeight,
     top: imagePosition,
   };
   const logoStyle = {
@@ -93,7 +97,7 @@ const Home = ({ navigation }) => {
       </Text>
       <View style={styles.centerImage}>
         <Image
-          resizeMode="contain"
+          resizeMode="stretch"
           style={[styles.image, centerImageStyle]}
           source={require('../assets/pepper.png')}
         />
@@ -141,6 +145,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     left: -100,
+    marginBottom: 10,
   },
   text: {
     fontSize: 10,
@@ -155,10 +160,11 @@ const styles = StyleSheet.create({
   centerImage: {
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
   buttonView: {
     flex: 1,
-    paddingTop: 40,
+    paddingTop: 55,
     marginTop: '-15%',
     width: '100%',
     backgroundColor: '#F5EED7',
@@ -173,9 +179,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     elevation: 3,
     backgroundColor: 'black',
-    marginBottom: 10,
+    marginBottom: 15,
     borderRadius: 20,
-    width: '75%',
+    width: '55%',
   },
   buttonText: {
     fontSize: 16,
