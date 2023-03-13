@@ -9,7 +9,7 @@ const ScanResult = () => {
     >
       <View style={styles.content}>
         <Image
-          resizeMode="contain"
+          resizeMode="cover"
           source={{ uri: formState['url'] }}
           style={styles.imageScan}
         />

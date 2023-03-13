@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Image,
   ImageBackground,
@@ -8,6 +8,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import Toast from 'react-native-root-toast';
 import { sendData } from './utils/http';
 
 const Contact = ({ navigation }) => {
@@ -15,8 +16,15 @@ const Contact = ({ navigation }) => {
   const [email, setEmail] = useState('إيميلك الإلكترونى');
   const [message, setMessage] = useState('الرسالة');
 
+  const showToast = () => {
+    Toast.show('Request sent successfully!', Toast.durations.SHORT);
+  };
   const submitHandler = () => {
     sendData({ name, email, message });
+    showToast();
+    setName('');
+    setEmail('');
+    setMessage('');
   };
 
   return (

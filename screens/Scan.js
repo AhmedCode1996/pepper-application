@@ -14,20 +14,20 @@ const Scan = ({ navigation }) => {
   const [logHeight, setLogHeight] = useState(0);
   const [buttonWidth, setButtonWidth] = useState(0);
   const [textSize, setTextSize] = useState(0);
-  const [cameraIcon, setCameraIcon] = useState(0)
-  const [backgroundLogo, setBackgroundLogo] = useState()
+  const [cameraIcon, setCameraIcon] = useState(0);
+  const [backgroundLogo, setBackgroundLogo] = useState();
 
   useEffect(() => {
     setLogHeight(height);
     setLogWidth(width);
     if (height < 520) {
       setButtonWidth(width / 10);
-      setCameraIcon(width / 9)
+      setCameraIcon(width / 9);
       setTextSize(13);
       setBackgroundLogo(height / 7);
     } else {
       setButtonWidth(45);
-      setCameraIcon(width / 7)
+      setCameraIcon(width / 7);
       setTextSize(15);
     }
   }, [width, height]);
@@ -43,7 +43,6 @@ const Scan = ({ navigation }) => {
       style={styles.container}
       source={require('./../assets/background.png')}
     >
-      {log}
       <Image
         style={styles.farmerImage}
         source={require('./../assets/defaultFarmer.png')}
@@ -54,10 +53,15 @@ const Scan = ({ navigation }) => {
           onPress={() => navigation.navigate('FarmScan')}
         >
           <Image
-            style={[styles.cameraIcon, { width: cameraIcon, height: cameraIcon }]}
+            style={[
+              styles.cameraIcon,
+              { width: cameraIcon, height: cameraIcon },
+            ]}
             source={require('./../assets/Scan.png')}
           />
-          <Text style={[styles.textScan, {fontSize: textSize}]}>فحص المحصول</Text>
+          <Text style={[styles.textScan, { fontSize: textSize }]}>
+            فحص المحصول
+          </Text>
         </Pressable>
         <View style={styles.information}>
           <View style={styles.teamInformation}>
@@ -65,7 +69,9 @@ const Scan = ({ navigation }) => {
               style={styles.alignItems}
               onPress={() => navigation.navigate('Contact')}
             >
-              <Text style={[styles.informationText,{fontSize: textSize}]}>تواصل معنا </Text>
+              <Text style={[styles.informationText, { fontSize: textSize }]}>
+                تواصل معنا{' '}
+              </Text>
               <Image
                 resizeMode="contain"
                 style={[
@@ -78,7 +84,10 @@ const Scan = ({ navigation }) => {
           </View>
           <View style={styles.articleInformation}>
             <Pressable onPress={() => navigation.navigate('Problems')}>
-              <Text style={[styles.informationText, {fontSize: textSize}]}> توعية</Text>
+              <Text style={[styles.informationText, { fontSize: textSize }]}>
+                {' '}
+                توعية
+              </Text>
               <Image
                 resizeMode="contain"
                 style={[
@@ -93,7 +102,10 @@ const Scan = ({ navigation }) => {
         <View style={styles.backgroundLogo}>
           <Image
             resizeMode="contain"
-            style={[styles.logo, {width: backgroundLogo, height: backgroundLogo}]}
+            style={[
+              styles.logo,
+              { width: backgroundLogo, height: backgroundLogo },
+            ]}
             source={require('../assets/logo.png')}
           />
         </View>

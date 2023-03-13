@@ -92,7 +92,7 @@ const FarmScan = ({ navigation }) => {
     formState['url'] = image;
 
     setTimeout(() => {
-      if (image.length !== 0) {
+      if (image.length !== 0 && typeof formState['output'] !== null) {
         navigation.navigate('ScanResult');
       }
     }, 3000);

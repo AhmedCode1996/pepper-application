@@ -1,4 +1,5 @@
 <script src="http://localhost:8097"></script>;
+import { useEffect, useState } from 'react';
 import {
   StyleSheet,
   ImageBackground,
@@ -6,8 +7,21 @@ import {
   Text,
   View,
   Pressable,
+  useWindowDimensions,
 } from 'react-native';
 const Problems = ({ navigation }) => {
+  const [behave, setBehave] = useState();
+  const { width, height } = useWindowDimensions();
+
+  useEffect(() => {
+    if (height < 753 && width < 360) {
+      setBehave('-12%');
+    }
+  }, [width, height]);
+
+  const behaveButton = {
+    top: behave,
+  };
   return (
     <ImageBackground
       resizeMode="stretch"
@@ -23,7 +37,7 @@ const Problems = ({ navigation }) => {
       </View>
       <Pressable
         onPress={() => navigation.navigate('Behave')}
-        style={styles.behaveButton}
+        style={[styles.behaveButton]}
       >
         <Image
           style={styles.behaveImage}
@@ -49,6 +63,11 @@ const Problems = ({ navigation }) => {
           />
         </Pressable>
       </View>
+      <Image
+        style={styles.bellLogo}
+        resizeMode="contain"
+        source={require('./../assets/belllogo.png')}
+      />
     </ImageBackground>
   );
 };
@@ -70,28 +89,40 @@ const styles = StyleSheet.create({
   },
   behaveButton: {
     position: 'absolute',
-    top: '-18%',
+    top: '13%',
+    width: 160,
+    height: 120,
   },
   behaveImage: {
-    width: 150,
+    width: '100%',
+    height: '100%',
   },
   methodsButton: {
-    right: '-38%',
-    top: '-8%',
-    width: 50,
-    height: 50,
+    right: '-40%',
+    top: '20%',
+    width: 150,
+    height: 150,
   },
   methodsImage: {
-    width: 150,
+    width: '100%',
+    height: '100%',
   },
   reasonsButton: {
     position: 'absolute',
-    right: 0,
-    top: '5%',
-    width: 120,
-    height: 50,
+    right: '6%',
+    top: '40%',
+    width: 130,
+    height: 150,
   },
   reasonsImage: {
     width: '100%',
+    height: '100%',
+  },
+  bellLogo: {
+    bottom: 0,
+    position: 'absolute',
+    right: 0,
+    width: 100,
+    height: 80,
   },
 });

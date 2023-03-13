@@ -17,6 +17,7 @@ const Home = ({ navigation }) => {
   const [logoPosition, setLogoPosition] = useState('-35%');
   const [imagePosition, setImagePosition] = useState(0);
   const [buttonView, setButtonView] = useState(0);
+  const [textSize, setTextSize] = useState(10);
   const log = (
     <View style={styles.log}>
       <Text> width{logWidth}</Text>
@@ -29,7 +30,12 @@ const Home = ({ navigation }) => {
     setLogHeight(height);
     if (height < 600) {
       setImageSize(180);
-      setImagePosition(30)
+      setImagePosition(30);
+    }
+    if (height < 753 && width < 360) {
+      setImagePosition('30%');
+      setButtonView('15%');
+      setTextSize(13);
     }
     if (height < 450) {
       setImageSize(170);
@@ -68,6 +74,10 @@ const Home = ({ navigation }) => {
     left: logoPosition,
   };
 
+  const sizeOfText = {
+    fontSize: textSize,
+  };
+
   return (
     <ImageBackground
       style={styles.backgroundContainer}
@@ -78,7 +88,7 @@ const Home = ({ navigation }) => {
         style={[styles.logo, logoStyle]}
         source={require('../assets/logo.png')}
       />
-      <Text style={styles.text}>
+      <Text style={[styles.text, sizeOfText]}>
         A Mobile Application for Bell Peppers Diseases Diagnosis
       </Text>
       <View style={styles.centerImage}>
@@ -112,7 +122,6 @@ const Home = ({ navigation }) => {
           />
         </Pressable>
       </View>
-      {log}
     </ImageBackground>
   );
 };
