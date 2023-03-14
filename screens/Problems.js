@@ -7,6 +7,8 @@ import {
   Pressable,
   useWindowDimensions,
 } from 'react-native';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 const Problems = ({ navigation }) => {
   const [behave, setBehave] = useState();
   const { width, height } = useWindowDimensions();
@@ -16,6 +18,15 @@ const Problems = ({ navigation }) => {
       setBehave('-12%');
     }
   }, [width, height]);
+  const [fontsLoaded] = useFonts({
+    'Tajawal-Medium': require('../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
+    'Tajawal-Bold': require('../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
+    'Tajawal-Regular': require('../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <ImageBackground

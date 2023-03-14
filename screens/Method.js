@@ -6,8 +6,20 @@ import {
   Text,
   Pressable,
 } from 'react-native';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 const Method = ({ navigation }) => {
+  const [fontsLoaded] = useFonts({
+    'Tajawal-Medium': require('../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
+    'Tajawal-Bold': require('../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
+    'Tajawal-Regular': require('../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <ImageBackground
       style={styles.backgroundContainer}
@@ -91,6 +103,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   title: {
+    fontFamily: 'Tajawal-Bold',
     backgroundColor: '#243F88',
     color: 'white',
     textAlign: 'center',
@@ -98,17 +111,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     paddingVertical: 3,
     fontSize: 16,
-    fontWeight: 'bold',
     position: 'absolute',
     top: -15,
-    left: '25%',
+    left: '27%',
   },
   subtitle: {
     marginBottom: 20,
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 13,
     lineHeight: 18,
+    fontFamily: 'Tajawal-Bold',
   },
   item: {
     position: 'relative',
@@ -128,7 +140,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   itemContent: {
-    fontWeight: 'bold',
+    fontFamily: 'Tajawal-Medium',
     fontSize: 13,
     lineHeight: 16,
   },

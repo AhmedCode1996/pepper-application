@@ -1,6 +1,17 @@
 import { ImageBackground, StyleSheet, Image, View, Text } from 'react-native';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 const Behave = () => {
+  const [fontsLoaded] = useFonts({
+    'Tajawal-Medium': require('../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
+    'Tajawal-Bold': require('../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
+    'Tajawal-Regular': require('../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   return (
     <ImageBackground
       style={styles.backgroundContainer}
@@ -12,7 +23,7 @@ const Behave = () => {
           في حالة إصابة محصول الفلفل الخاص بك بالبقع البكتيرية وقمت بتحديدها في
           مراحلها الاولي باستخدام التطبيق أو باي طريقة اخري يمكنك القيام بالتالي{' '}
         </Text>
-        <Text style={styles.item}>
+        <Text style={[styles.item, styles.noMargin]}>
           قم بإزالة الأجزاء المصابة من النبات وتخلص منها. إذا تأثر جزء صغير فقط
           من النبات ، قم بتقليمه بعيدًا
         </Text>
@@ -25,7 +36,7 @@ const Behave = () => {
           قم بتدوير محاصيل الفلفل في مكان مختلف كل عام لمنع الجراثيم من التراكم
           بأعداد كبيرة
         </Text>
-        <Text style={styles.item}>
+        <Text style={[styles.item, styles.noMargin]}>
           كن دائمًا نظيفًا قبل التوجه إلى الصوبة لتجنب انتشار الجراثيم من نبات
           إلى آخر. أيضا ، قم بالري في قاع النبات لتجنب الماء من الجلوس على
           الأوراق
@@ -53,14 +64,14 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   title: {
+    fontFamily: 'Tajawal-Bold',
     backgroundColor: '#243F88',
     color: 'white',
     textAlign: 'center',
     borderRadius: 15,
     paddingHorizontal: 40,
     paddingVertical: 3,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 15,
     position: 'absolute',
     top: -15,
     left: '25%',
@@ -76,19 +87,18 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   subTitle: {
-    fontWeight: 'bold',
+    fontFamily: 'Tajawal-Bold',
     textAlign: 'center',
     marginBottom: 20,
-    fontSize: 16,
+    fontSize: 13,
     lineHeight: 18,
   },
   item: {
-    marginBottom: 20,
+    fontFamily: 'Tajawal-Medium',
+    marginBottom: 15,
     fontSize: 14,
-    fontWeight: 'bold',
     textAlign: 'center',
-    lineHeight: 18,
-    fontFamily: 'ubuntu',
+    // lineHeight: 18,
   },
   logo: {
     position: 'absolute',
@@ -101,5 +111,8 @@ const styles = StyleSheet.create({
   logoIcon: {
     width: 80,
     height: 80,
+  },
+  noMargin: {
+    marginBottom: 0,
   },
 });

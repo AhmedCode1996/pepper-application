@@ -3,9 +3,9 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 const Reasons = () => {
   const [fontsLoaded] = useFonts({
-    'Cairo-Bold': require('../assets/fonts/Cairo-Bold.ttf'),
-    'Cairo-Medium': require('../assets/fonts/Cairo-Medium.ttf'),
-    'Cairo-Regular': require('../assets/fonts/Cairo-Regular.ttf'),
+    'Tajawal-Medium': require('../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
+    'Tajawal-Bold': require('../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
+    'Tajawal-Regular': require('../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   title: {
+    fontFamily: 'Tajawal-Bold',
     backgroundColor: '#243F88',
     color: 'white',
     textAlign: 'center',
@@ -99,18 +100,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     paddingVertical: 3,
     fontSize: 16,
-    fontWeight: 'bold',
     position: 'absolute',
     top: -15,
-    left: '25%',
+    left: '27%',
   },
   subtitle: {
-    fontFamily: 'Cairo-Bold',
+    fontFamily: 'Tajawal-Bold',
     marginBottom: 20,
     textAlign: 'center',
     lineHeight: 16,
-    fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 14,
   },
   item: {
     position: 'relative',
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 16,
     fontWeight: '400',
-    fontFamily: 'Cairo-Regular',
+    fontFamily: 'Tajawal-Medium',
   },
   logo: {
     position: 'absolute',
