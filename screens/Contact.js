@@ -8,6 +8,8 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import * as Linking from 'expo-linking';
+
 import * as MailComposer from 'expo-mail-composer';
 import Toast from 'react-native-root-toast';
 import { sendData } from './utils/http';
@@ -89,7 +91,7 @@ const Contact = ({ navigation }) => {
             </Pressable>
           </View>
           <View style={styles.shadow}>
-            <Pressable>
+            <Pressable onPress={() => Linking.openURL('https://eelu.edu.eg')}>
               <Image
                 source={require('./../assets/EELU.png')}
                 resizeMode="cover"
