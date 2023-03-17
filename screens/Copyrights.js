@@ -5,8 +5,19 @@ import {
   Text,
   View,
 } from 'react-native';
+import { isLoaded, useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 const Copyrights = () => {
+  const [fontsLoaded] = useFonts({
+    'Tajawal-Medium': require('../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
+    'Tajawal-Bold': require('../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
+    'Tajawal-Regular': require('../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   return (
     <ImageBackground
       style={styles.container}
@@ -69,11 +80,11 @@ const styles = StyleSheet.create({
   },
 
   introText: {
-    fontWeight: 'bold',
+    fontFamily: 'Tajawal-Medium',
   },
   universityText: {
     color: '#243F88',
-    fontWeight: 'bold',
+    fontFamily: 'Tajawal-Bold',
   },
   list: {
     fontWeight: 'bold',
@@ -90,19 +101,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 3,
     paddingHorizontal: 15,
-    fontWeight: 'bold',
+    fontFamily: 'Tajawal-Bold',
   },
   contactText: {
-    fontWeight: 'bold',
+    fontFamily: 'Tajawal-Medium',
   },
   contactEmail: {
     color: '#243F88',
-    fontWeight: 'bold',
-    fontSize: 11,
+    fontFamily: 'Tajawal-Bold',
+    fontSize: 13,
   },
   copyrightText: {
-    fontWeight: 'bold',
-    fontSize: 12,
+    fontFamily: 'Tajawal-Medium',
+    fontSize: 13,
     marginBottom: 5,
     marginTop: 10,
   },

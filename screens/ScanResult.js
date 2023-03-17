@@ -1,7 +1,13 @@
+import { useEffect } from 'react';
 import { Text, StyleSheet, Image, ImageBackground, View } from 'react-native';
 import { useGlobalContext } from '../data';
 const ScanResult = () => {
   const { formState } = useGlobalContext();
+
+  useEffect(()=> {
+    formState.loading = false;
+    formState.status = '';
+  }, [])
   return (
     <ImageBackground
       style={styles.container}

@@ -22,17 +22,61 @@ const App = () => {
       <NavigationContainer>
         <Context>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Scan" component={Scan} />
-            <Stack.Screen name="FarmScan" component={FarmScan} />
-            <Stack.Screen name="ScanResult" component={ScanResult} />
-            <Stack.Screen name="Contact" component={Contact} />
-            <Stack.Screen name="Copyrights" component={Copyrights} />
-            <Stack.Screen name="Problems" component={Problems} />
-            <Stack.Screen name="Behave" component={Behave} />
-            <Stack.Screen name="Reasons" component={Reasons} />
-            <Stack.Screen name="Method" component={Method} />
-            <Stack.Screen name="NextMethod" component={NextMethod} />
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="Scan"
+              component={Scan}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="FarmScan"
+              component={FarmScan}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="ScanResult"
+              component={ScanResult}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="Contact"
+              component={Contact}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="Copyrights"
+              component={Copyrights}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="Problems"
+              component={Problems}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="Behave"
+              component={Behave}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="Reasons"
+              component={Reasons}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="Method"
+              component={Method}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="NextMethod"
+              component={NextMethod}
+              options={{ animation: 'slide_from_left' }}
+            />
           </Stack.Navigator>
         </Context>
       </NavigationContainer>

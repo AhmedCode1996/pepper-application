@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   reasonsButton: {
     position: 'absolute',
-    right: '6%',
+    right: '3%',
     top: '40%',
     width: 130,
     height: 150,

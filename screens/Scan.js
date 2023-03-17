@@ -1,3 +1,4 @@
+import Lottie from 'lottie-react-native';
 import { useEffect, useState } from 'react';
 import {
   ImageBackground,
@@ -8,7 +9,15 @@ import {
   Pressable,
   useWindowDimensions,
 } from 'react-native';
+import { isLoaded, useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 const Scan = ({ navigation }) => {
+  const [fontsLoaded] = useFonts({
+    'Tajawal-Medium': require('../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
+    'Tajawal-Bold': require('../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
+    'Tajawal-Regular': require('../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
+  });
+
   const { width, height } = useWindowDimensions();
   const [logWidth, setLogWidth] = useState(0);
   const [logHeight, setLogHeight] = useState(0);
@@ -32,6 +41,9 @@ const Scan = ({ navigation }) => {
     }
   }, [width, height]);
 
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   return (
     <ImageBackground
       style={styles.container}
@@ -46,13 +58,21 @@ const Scan = ({ navigation }) => {
           style={styles.scan}
           onPress={() => navigation.navigate('FarmScan')}
         >
-          <Image
+          {/* <Image
             style={[
               styles.cameraIcon,
               { width: cameraIcon, height: cameraIcon },
             ]}
             source={require('./../assets/Scan.png')}
-          />
+          /> */}
+          <View style={styles.cameraContainer}>
+            <Lottie
+              style={styles.cameraIcon}
+              source={require('../assets/animatedScan.json')}
+              autoPlay
+              loop
+            />
+          </View>
           <Text style={[styles.textScan, { fontSize: textSize }]}>
             فحص المحصول
           </Text>
@@ -74,6 +94,14 @@ const Scan = ({ navigation }) => {
                 ]}
                 source={require('./../assets/contact-us.png')}
               />
+              {/* <View style={styles.contactContainer}>
+                <Lottie
+                  style={styles.contactIcon}
+                  source={require('../assets/animatedContact.json')}
+                  autoPlay
+                  loop
+                />
+              </View> */}
             </Pressable>
           </View>
           <View style={styles.articleInformation}>
@@ -129,6 +157,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5EED7',
     width: '100%',
     marginTop: '-25%',
+    position: 'relative',
+    zIndex: 4
   },
   scan: {
     justifyContent: 'space-around',
@@ -141,13 +171,25 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 220,
   },
-  cameraIcon: {
-    width: 50,
+  cameraContainer: {
+    width: 60,
     height: 50,
+  },
+  cameraIcon: {
+    width: '100%',
+    height: '100%',
+  },
+  contactContainer: {
+    width: 60,
+    height: 50,
+  },
+  contactIcon: {
+    width: '100%',
+    height: '100%',
   },
   textScan: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'Tajawal-Bold',
   },
   information: {
     marginTop: 10,
@@ -174,8 +216,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   informationText: {
-    fontSize: 15,
-    fontWeight: 'bold',
+    fontSize: 12,
+    fontFamily: 'Tajawal-Bold',
     color: 'white',
   },
   alignItems: {

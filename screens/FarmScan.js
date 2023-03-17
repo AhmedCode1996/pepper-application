@@ -5,22 +5,38 @@ import {
   ImageBackground,
   Image,
   StyleSheet,
-  ActivityIndicator,
 } from 'react-native';
 import { launchCameraAsync, launchImageLibraryAsync } from 'expo-image-picker';
 import { useEffect, useState } from 'react';
 import { useGlobalContext } from '../data';
+import NetInfo from '@react-native-community/netinfo';
+import Lottie from 'lottie-react-native';
+import { isLoaded, useFonts } from 'expo-font';
+// import AppLoading from 'expo-app-loading';
 
 const FarmScan = ({ navigation }) => {
   const { formState } = useGlobalContext();
   const [image, setImage] = useState('');
+  const [status, setStatus] = useState('');
   const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isConnected, setIsConnected] = useState(true);
+
+  const [fontsLoaded] = useFonts({
+    'Tajawal-Medium': require('../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
+    'Tajawal-Bold': require('../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
+    'Tajawal-Regular': require('../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
+  });
+  useEffect(() => {
+    NetInfo.fetch().then((state) => {
+      setIsConnected(state.isConnected);
+    });
+  }, []);
 
   const takeImageHandler = async () => {
     const takenImage = await launchCameraAsync({
       allowsEditing: false,
-      quality: 0.5,
+      quality: 1,
     });
 
     if (!takenImage.canceled) {
@@ -29,6 +45,7 @@ const FarmScan = ({ navigation }) => {
     }
 
     if (takenImage.canceled) {
+      setLoading(false);
       return;
     }
     const formData = new FormData();
@@ -48,6 +65,7 @@ const FarmScan = ({ navigation }) => {
       });
 
       const res = await data.json();
+      setStatus(res.status);
       setOutput(res.output);
       setLoading(true);
     } catch (error) {
@@ -65,6 +83,7 @@ const FarmScan = ({ navigation }) => {
       setLoading(true);
     }
     if (result.canceled) {
+      setLoading(false);
       return;
     }
     const formData = new FormData();
@@ -84,22 +103,32 @@ const FarmScan = ({ navigation }) => {
       });
 
       const res = await data.json();
+      setStatus(res.status);
       setOutput(res.output);
+      setLoading(true);
     } catch (error) {
       console.log('error occured', error);
     }
   };
 
   useEffect(() => {
-    formState['output'] = output;
-    formState['url'] = image;
+    formState.output = output;
+    formState.url = image;
     setTimeout(() => {
-      if (image.length !== 0 && typeof formState['output'] !== null) {
+      if (
+        image.length !== 0 &&
+        typeof formState['output'] !== null &&
+        isConnected &&
+        status === 'success'
+      ) {
         navigation.navigate('ScanResult');
         setLoading(false);
       }
-    }, 3000);
+    }, 4000);
   }, [image, output]);
+  // if (!fontsLoaded) {
+  //   return <AppLoading />;
+  // }
 
   return (
     <ImageBackground
@@ -108,7 +137,14 @@ const FarmScan = ({ navigation }) => {
     >
       <Text style={styles.textElement}>فحص المحصول</Text>
       <View style={styles.scanContent}>
-        <Pressable onPress={takeImageHandler} style={styles.cameraScan}>
+        <Pressable
+          onPress={
+            isConnected
+              ? takeImageHandler
+              : () => console.log('open the internet first')
+          }
+          style={styles.cameraScan}
+        >
           <Image
             resizeMode="contain"
             style={styles.cameraIcon}
@@ -116,7 +152,14 @@ const FarmScan = ({ navigation }) => {
           />
           <Text style={styles.whiteText}>إلتقاط صورة</Text>
         </Pressable>
-        <Pressable onPress={openGallary} style={styles.albumScan}>
+        <Pressable
+          onPress={
+            isConnected
+              ? openGallary
+              : () => console.log('open the internet first')
+          }
+          style={styles.albumScan}
+        >
           <Image
             resizeMode="contain"
             style={styles.gallaryIcon}
@@ -125,7 +168,30 @@ const FarmScan = ({ navigation }) => {
           <Text style={styles.whiteText}>اختار من المعرض</Text>
         </Pressable>
       </View>
-      {loading && <ActivityIndicator size={'large'} style={styles.spinner} />}
+      {loading && (
+        <View style={styles.loadingContainer}>
+          <Lottie
+            style={styles.animation}
+            source={require('../assets/loading.json')}
+            autoPlay
+            loop
+          />
+          <Text style={styles.scanText}>جارى فحص الصورة</Text>
+        </View>
+      )}
+      {!isConnected && (
+        <View style={styles.errorContainer}>
+          <Lottie
+            style={styles.error}
+            source={require('../assets/error.json')}
+            autoPlay
+            loop
+          />
+          <Text style={styles.errorText}>
+            برجاء فحص اتصال الإنترنت الخاص بك
+          </Text>
+        </View>
+      )}
     </ImageBackground>
   );
 };
@@ -141,7 +207,7 @@ const styles = StyleSheet.create({
   },
   textElement: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'Tajawal-Bold',
   },
   scanContent: {
     justifyContent: 'center',
@@ -164,7 +230,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 10,
     paddingVertical: 20,
-    width: 120,
+    width: 130,
   },
   cameraIcon: {
     width: 50,
@@ -178,7 +244,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 10,
     paddingVertical: 20,
-    width: 120,
+    width: 130,
   },
   gallaryIcon: {
     width: 50,
@@ -186,9 +252,24 @@ const styles = StyleSheet.create({
   },
   whiteText: {
     color: 'white',
-    fontWeight: 'bold',
+    fontFamily: 'Tajawal-Medium',
+    fontSize: 14,
   },
-  spinner: {
-    marginTop: 20,
+  loadingContainer: {
+    alignItems: 'center',
+  },
+  scanText: {
+    fontFamily: 'Tajawal-Medium',
+    fontSize: 20,
+    marginTop: '5%',
+  },
+  animation: { width: '25%', marginTop: '5%' },
+  errorContainer: { alignItems: 'center', flexDirection: 'column' },
+  error: {
+    width: '40%',
+  },
+  errorText: {
+    fontFamily: 'Tajawal-Bold',
+    fontSize: 16,
   },
 });

@@ -8,7 +8,17 @@ import {
   Pressable,
   useWindowDimensions,
 } from 'react-native';
+import AnimatedTyping from './utils/AnimatedTyping';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
+
 const Home = ({ navigation }) => {
+  const [fontsLoaded] = useFonts({
+    'Tajawal-Medium': require('../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
+    'Tajawal-Bold': require('../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
+    'Tajawal-Regular': require('../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
+  });
+  let [greetingCompleted, setGreetingCompleted] = useState(false);
   const { width, height } = useWindowDimensions();
 
   const [imageSize, setImageSize] = useState(250);
@@ -23,12 +33,13 @@ const Home = ({ navigation }) => {
       setImageSize(180);
       setImagePosition(30);
     }
-    if (height <= 760) {
+    if (height <= 765) {
       setImagePosition('30%');
       setButtonView('15%');
       setTextSize(13);
-      setImageSize(250);
-      setimageHeight(280);
+      setImageSize(300);
+      setimageHeight(340);
+      setImagePosition(90);
     }
     if (height < 450) {
       setImageSize(170);
@@ -71,7 +82,11 @@ const Home = ({ navigation }) => {
   const sizeOfText = {
     fontSize: textSize,
   };
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
+  const logHeight = <Text>{height}</Text>;
   return (
     <ImageBackground
       style={styles.backgroundContainer}
@@ -82,9 +97,13 @@ const Home = ({ navigation }) => {
         style={[styles.logo, logoStyle]}
         source={require('../assets/logo.png')}
       />
-      <Text style={[styles.text, sizeOfText]}>
-        A Mobile Application for Bell Peppers Diseases Diagnosis
-      </Text>
+      {/* <Text style={[styles.text, sizeOfText]}>{title}</Text> */}
+      {/* {logHeight} */}
+      <AnimatedTyping
+        sizeOfText={sizeOfText}
+        text={['A Mobile Application for Bell Peppers Diseases Diagnosis']}
+        onComplete={() => setGreetingCompleted(true)}
+      />
       <View style={styles.centerImage}>
         <Image
           resizeMode="stretch"
@@ -130,6 +149,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'relative',
   },
+  welcomeContainer: {
+    top: '-3%',
+    position: 'absolute',
+    right: '-25%',
+  },
+  welcome: {
+    width: '60%',
+  },
   logo: {
     padding: 20,
     width: 70,
@@ -154,8 +181,7 @@ const styles = StyleSheet.create({
   },
   buttonView: {
     flex: 1,
-    paddingTop: 55,
-    marginTop: '-15%',
+    paddingTop: 85,
     width: '100%',
     backgroundColor: '#F5EED7',
     borderTopLeftRadius: 50,
@@ -174,10 +200,9 @@ const styles = StyleSheet.create({
     width: '55%',
   },
   buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
+    fontSize: 17,
     color: 'white',
+    fontFamily: 'Tajawal-Medium',
   },
   arabicArrow: {
     width: 15,
