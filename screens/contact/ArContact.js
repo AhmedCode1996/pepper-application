@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Image,
   ImageBackground,
@@ -7,66 +7,66 @@ import {
   Text,
   TextInput,
   View,
-} from 'react-native';
-import * as Linking from 'expo-linking';
+} from "react-native";
+import * as Linking from "expo-linking";
 
-import * as MailComposer from 'expo-mail-composer';
-import Toast from 'react-native-root-toast';
-import { sendData } from './utils/http';
+import * as MailComposer from "expo-mail-composer";
+import Toast from "react-native-root-toast";
+import { sendData } from "../utils/http";
 
 const Contact = ({ navigation }) => {
-  const [name, setName] = useState('الاسم');
-  const [email, setEmail] = useState('إيميلك الإلكترونى');
-  const [message, setMessage] = useState('الرسالة');
+  const [name, setName] = useState();
+  const [reason, setReason] = useState();
+  const [message, setMessage] = useState();
 
   const showToast = () => {
-    Toast.show('Request sent successfully!', Toast.durations.SHORT);
+    Toast.show("Request sent successfully!", Toast.durations.SHORT);
   };
 
   const sendMail = () => {
     MailComposer.composeAsync({
-      subject: 'contact information',
-      body: message,
-      recipients: ['contact@hafedk.org'],
+      subject: reason,
+      body: `from ${name} \n ${message}`,
+      recipients: ["contact@hafedk.org"],
     });
   };
   const submitHandler = () => {
-    sendData({ name, email, message });
+    sendData({ name, reason, message });
     sendMail();
     showToast();
-    setName('');
-    setEmail('');
-    setMessage('');
+    setName("");
+    setReason("");
+    setMessage("");
   };
 
   return (
     <ImageBackground
       style={styles.backgroundContainer}
-      source={require('../assets/background.png')}
+      source={require("../../assets/background.png")}
     >
       <View style={styles.contactContent}>
         <Image
           resizeMode="contain"
           style={styles.phoneIcon}
-          source={require('./../assets/phone.png')}
+          source={require("../../assets/phone.png")}
         />
         <Text style={styles.contactText}>تواصل معنا</Text>
         <TextInput
-          placeholder="الاسم"
           value={name}
           onChangeText={setName}
           style={styles.input}
+          placeholder="الاسم"
         />
         <TextInput
-          placeholder="إيميلك الاإلكترونى"
-          value={email}
-          onChangeText={setEmail}
+          value={reason}
+          onChangeText={setReason}
           style={styles.input}
+          placeholder="سبب التواصل"
         />
         <TextInput
-          placeholder="الرسالة"
           value={message}
           onChangeText={setMessage}
+          placeholder="الرسالة"
           multiline
           style={styles.textareaInput}
         />
@@ -74,26 +74,26 @@ const Contact = ({ navigation }) => {
           <Image
             style={styles.sendIcon}
             resizeMode="contain"
-            source={require('./../assets/send.png')}
+            source={require("../../assets/send.png")}
           />
         </Pressable>
         <Image
-          source={require('./../assets/letter.png')}
+          source={require("../../assets/letter.png")}
           style={styles.letterIcon}
         />
         <View style={styles.copyrights}>
           <View style={[styles.shadow, { marginRight: 10 }]}>
-            <Pressable onPress={() => navigation.navigate('Copyrights')}>
+            <Pressable onPress={() => navigation.navigate("ArCopyrights")}>
               <Image
-                source={require('./../assets/Copyright-button.png')}
+                source={require("../../assets/Copyright-button.png")}
                 style={styles.copyrightIcon}
               />
             </Pressable>
           </View>
           <View style={styles.shadow}>
-            <Pressable onPress={() => Linking.openURL('https://eelu.edu.eg')}>
+            <Pressable onPress={() => Linking.openURL("https://eelu.edu.eg")}>
               <Image
-                source={require('./../assets/EELU.png')}
+                source={require("../../assets/EELU.png")}
                 resizeMode="cover"
                 style={styles.universityIcon}
               />
@@ -110,82 +110,82 @@ export default Contact;
 const styles = StyleSheet.create({
   backgroundContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   contactContent: {
-    width: '90%',
-    height: '70%',
-    backgroundColor: 'white',
+    width: "90%",
+    height: "70%",
+    backgroundColor: "white",
     borderRadius: 30,
-    position: 'relative',
+    position: "relative",
     padding: 15,
     elevation: 2,
-    shadowColor: '#52006A',
+    shadowColor: "#52006A",
   },
   phoneIcon: {
     width: 70,
     height: 70,
-    position: 'absolute',
+    position: "absolute",
     top: -30,
     right: 15,
   },
   contactText: {
-    color: 'black',
+    color: "black",
     fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginBottom: 15,
   },
   input: {
-    backgroundColor: '#98A5C7',
+    backgroundColor: "#98A5C7",
     padding: 8,
-    height: '10%',
-    color: 'white',
+    height: "10%",
+    color: "white",
     borderRadius: 20,
     marginBottom: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   textareaInput: {
-    backgroundColor: '#98A5C7',
+    backgroundColor: "#98A5C7",
     padding: 5,
-    color: 'white',
+    color: "white",
     borderRadius: 20,
-    height: '30%',
+    height: "30%",
     marginBottom: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   sendButton: {
-    backgroundColor: 'black',
+    backgroundColor: "black",
     borderRadius: 20,
     padding: 10,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    height: '10%',
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    height: "10%",
   },
   sendIcon: {
     width: 60,
     height: 60,
   },
   sendText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
   letterIcon: {
-    position: 'absolute',
+    position: "absolute",
     bottom: -40,
     left: 10,
     width: 80,
     height: 80,
   },
   copyrights: {
-    position: 'absolute',
+    position: "absolute",
     bottom: -25,
     right: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
   copyrightIcon: {
     width: 45,
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
     borderRadius: 50,
-    shadowColor: '#000',
+    shadowColor: "#000",
     elevation: 4,
     shadowOpacity: 0.58,
     shadowRadius: 20.0,

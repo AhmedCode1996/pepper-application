@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Text, StyleSheet, Image, ImageBackground, View } from 'react-native';
-import { useGlobalContext } from '../data';
+import { useGlobalContext } from '../../data';
 const ScanResult = () => {
   const { formState } = useGlobalContext();
 
@@ -11,7 +11,7 @@ const ScanResult = () => {
   return (
     <ImageBackground
       style={styles.container}
-      source={require('./../assets/background.png')}
+      source={require('../../assets/background.png')}
     >
       <View style={styles.content}>
         <Image

@@ -1,16 +1,16 @@
-import { useRef, useState, useEffect } from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
+import { useRef, useState, useEffect } from "react";
+import { StyleSheet, Text } from "react-native";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 export default function AnimatedTyping(props) {
   const [fontsLoaded] = useFonts({
-    'Tajawal-Medium': require('../../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
-    'Tajawal-Bold': require('../../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
-    'Tajawal-Regular': require('../../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
+    "Tajawal-Medium": require("../../assets/fonts/Tajawal/Tajawal-Medium.ttf"),
+    "Tajawal-Bold": require("../../assets/fonts/Tajawal/Tajawal-Bold.ttf"),
+    "Tajawal-Regular": require("../../assets/fonts/Tajawal/Tajawal-Regular.ttf"),
   });
-  let [text, setText] = useState('');
-  let [cursorColor, setCursorColor] = useState('transparent');
+  let [text, setText] = useState("");
+  let [cursorColor, setCursorColor] = useState("transparent");
   let [messageIndex, setMessageIndex] = useState(0);
   let [textIndex, setTextIndex] = useState(0);
   let [timeouts, setTimeouts] = useState({
@@ -57,7 +57,7 @@ export default function AnimatedTyping(props) {
       setTimeouts(updatedTimeouts);
     } else {
       clearInterval(timeoutsRef.current.cursorTimeout);
-      setCursorColor('transparent');
+      setCursorColor("transparent");
 
       if (props.onComplete) {
         props.onComplete();
@@ -66,14 +66,14 @@ export default function AnimatedTyping(props) {
   };
 
   let newLineAnimation = () => {
-    setText(textRef.current + '\n');
+    setText(textRef.current + "\n");
   };
 
   let cursorAnimation = () => {
-    if (cursorColorRef.current === 'transparent') {
-      setCursorColor('#8EA960');
+    if (cursorColorRef.current === "transparent") {
+      setCursorColor("#8EA960");
     } else {
-      setCursorColor('transparent');
+      setCursorColor("transparent");
     }
   };
 
@@ -105,13 +105,13 @@ export default function AnimatedTyping(props) {
 let styles = StyleSheet.create({
   text: {
     paddingHorizontal: 40,
-    alignSelf: 'stretch',
-    textAlign: 'center',
+    alignSelf: "stretch",
+    textAlign: "center",
     lineHeight: 22,
-    fontFamily: 'Tajawal-Medium',
+    fontFamily: "Tajawal-Medium",
     fontSize: 15,
-    position: 'absolute',
-    top: '12%',
-    left: '3%',
+    position: "absolute",
+    top: "12%",
+    left: "5%",
   },
 });

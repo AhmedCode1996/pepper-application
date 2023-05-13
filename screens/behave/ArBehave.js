@@ -4,9 +4,9 @@ import AppLoading from 'expo-app-loading';
 
 const Behave = () => {
   const [fontsLoaded] = useFonts({
-    'Tajawal-Medium': require('../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
-    'Tajawal-Bold': require('../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
-    'Tajawal-Regular': require('../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
+    'Tajawal-Medium': require('../../assets/fonts/Tajawal/Tajawal-Medium.ttf'),
+    'Tajawal-Bold': require('../../assets/fonts/Tajawal/Tajawal-Bold.ttf'),
+    'Tajawal-Regular': require('../../assets/fonts/Tajawal/Tajawal-Regular.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -15,7 +15,7 @@ const Behave = () => {
   return (
     <ImageBackground
       style={styles.backgroundContainer}
-      source={require('../assets/background.png')}
+      source={require('../../assets/background.png')}
     >
       <View style={styles.content}>
         <Text style={styles.title}>تتصرف ازاى ؟ </Text>
@@ -45,7 +45,7 @@ const Behave = () => {
       <View style={styles.logo}>
         <Image
           resizeMode="contain"
-          source={require('./../assets/logo.png')}
+          source={require('../../assets/logo.png')}
           style={styles.logoIcon}
         />
       </View>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     position: 'absolute',
     top: -15,
-    left: '25%',
+    left: '22%',
   },
   content: {
     backgroundColor: '#F7F8FA',
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     position: 'absolute',
+    zIndex: 100,
     bottom: 0,
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
@@ -109,8 +110,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   logoIcon: {
-    width: 80,
-    height: 80,
+    width: 60,
+    height: 60,
   },
   noMargin: {
     marginBottom: 0,
